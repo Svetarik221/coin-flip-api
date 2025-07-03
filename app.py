@@ -15,8 +15,12 @@ from datetime import datetime
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Подключение к базе данных
-DATABASE_URL = "postgresql://vostrecovasvetlana:mEF-Skx-4yb-zwu@postgresql-vostrecovasvetlana.alwaysdata.net:5432/vostrecovasvetlana_s"
+# Подключение к базе данных через переменные окружения
+DATABASE_URL = os.getenv(
+    "DATABASE_URL", 
+    "postgresql://username:password@localhost:5432/database"
+)
+
 database = Database(DATABASE_URL)
 
 app = FastAPI(
